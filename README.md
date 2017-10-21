@@ -16,8 +16,7 @@ Output from "hello message" test:
 
 [keyvan@ocp-master ~]$ wsk -i action invoke /whisk.system/utils/echo -p message hello -b
 ok: invoked /whisk.system/utils/echo with id db46e0ef0a704c5586e0ef0a709c559d
-[source,json]
-----
+```json
 {
     "activationId": "db46e0ef0a704c5586e0ef0a709c559d",
     "annotations": [
@@ -51,4 +50,4 @@ ok: invoked /whisk.system/utils/echo with id db46e0ef0a704c5586e0ef0a709c559d
     "subject": "whisk.system",
     "version": "0.0.1"
 }
-----
+```
