@@ -7,12 +7,11 @@ AUTH_SECRET=$(oc get secret openwhisk -o yaml | grep "system:" | awk '{print $2}
 wsk property set --auth $AUTH_SECRET --apihost $(oc get route/openwhisk --template={{.spec.host}})
 
 Smoke Test:
-
+```bash
 wsk -i list
 wsk -i action invoke /whisk.system/utils/echo -p message hello -b
-
+```
 Output from "hello message" test:
-
 
 [keyvan@ocp-master ~]$ wsk -i action invoke /whisk.system/utils/echo -p message hello -b
 ok: invoked /whisk.system/utils/echo with id db46e0ef0a704c5586e0ef0a709c559d
