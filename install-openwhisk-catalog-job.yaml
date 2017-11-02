@@ -1,0 +1,41 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  labels:
+    name: install-openwhisk-catalog-01
+  name: install-openwhisk-catalog-01
+spec:
+  parallelism: 1
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        job-name: install-openwhisk-catalog-01
+        name: install-openwhisk-catalog-01
+    spec:
+      containers:
+      - env:
+        - name: AUTH_WHISK_SYSTEM
+          valueFrom:
+            secretKeyRef:
+              key: system
+              name: openwhisk
+        image: projectodd/whisk_catalog:openshift-latest
+        imagePullPolicy: IfNotPresent
+        name: install-openwhisk-catalog
+        resources: {}
+        terminationMessagePath: /dev/termination-log
+        terminationMessagePolicy: File
+        volumeMounts:
+        - mountPath: /openwhisk_config
+          name: openwhisk-config
+      dnsPolicy: ClusterFirst
+      restartPolicy: Never
+      schedulerName: default-scheduler
+      securityContext: {}
+      terminationGracePeriodSeconds: 30
+      volumes:
+      - configMap:
+          defaultMode: 420
+          name: openwhisk-config
+        name: openwhisk-config

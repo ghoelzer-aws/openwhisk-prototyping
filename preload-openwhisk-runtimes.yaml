@@ -1,0 +1,77 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  labels:
+    name: preload-openwhisk-runtimes-01
+  name: preload-openwhisk-runtimes-01
+spec:
+  completions: 1
+  parallelism: 1
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        job-name: preload-openwhisk-runtimes-01
+        name: preload-openwhisk-runtimes-01
+    spec:
+      containers:
+      - command:
+        - /bin/sh
+        - -c
+        - echo
+        - success
+        image: projectodd/nodejs6action:openshift-latest
+        imagePullPolicy: IfNotPresent
+        name: preload-openwhisk-nodejs6
+        resources: {}
+        terminationMessagePath: /dev/termination-log
+        terminationMessagePolicy: File
+      - command:
+        - /bin/sh
+        - -c
+        - echo
+        - success
+        image: projectodd/python2action:openshift-latest
+        imagePullPolicy: IfNotPresent
+        name: preload-openwhisk-python2
+        resources: {}
+        terminationMessagePath: /dev/termination-log
+        terminationMessagePolicy: File
+      - command:
+        - /bin/sh
+        - -c
+        - echo
+        - success
+        image: projectodd/python3action:openshift-latest
+        imagePullPolicy: IfNotPresent
+        name: preload-openwhisk-python3
+        resources: {}
+        terminationMessagePath: /dev/termination-log
+        terminationMessagePolicy: File
+      - command:
+        - /bin/sh
+        - -c
+        - echo
+        - success
+        image: projectodd/swift3action:openshift-latest
+        imagePullPolicy: IfNotPresent
+        name: preload-openwhisk-swift3
+        resources: {}
+        terminationMessagePath: /dev/termination-log
+        terminationMessagePolicy: File
+      - command:
+        - /bin/sh
+        - -c
+        - echo
+        - success
+        image: projectodd/java8action:openshift-latest
+        imagePullPolicy: IfNotPresent
+        name: preload-openwhisk-java8
+        resources: {}
+        terminationMessagePath: /dev/termination-log
+        terminationMessagePolicy: File
+      dnsPolicy: ClusterFirst
+      restartPolicy: Never
+      schedulerName: default-scheduler
+      securityContext: {}
+      terminationGracePeriodSeconds: 30
